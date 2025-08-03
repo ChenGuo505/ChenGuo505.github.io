@@ -24,7 +24,8 @@
 
 <p>These logs confirmed my suspicion: the controller was attempting to process services it shouldn’t care about, failing halfway through reconciliation, and never cleaning them up from the cache. As a result, the associated security group was considered “in use” and thus never deleted.</p>
 <h2 id="The-Fix"><a href="#The-Fix" class="headerlink" title="The Fix"></a>The Fix</h2><p>Once I understood the root cause, the fix was simple: we removed the AWS LB-related annotations from all non-LoadBalancer services. After that, the controller stopped treating them as LoadBalancers, stopped adding them to the internal cache, and finally allowed the security group to be deleted as expected.</p>
-<h4 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h4><ul>
+<p><strong>Takeaways</strong></p>
+<ul>
 <li><strong>Caching can be dangerous</strong>: Especially when the controller’s decision logic relies on an internal map rather than querying the live state.</li>
 <li><strong>Annotations are powerful — and risky</strong>: Leaving legacy annotations in place can lead to subtle and unexpected side effects.</li>
 <li><strong>Logs are your friend</strong>: The repetitive unsupported resource type: ClusterIP messages were the key clue that unlocked the whole investigation.</li>
