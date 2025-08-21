@@ -386,4 +386,46 @@
         <tag>Docker</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Reflections on My Internship - Building, Securing, and Stabilizing Cloud Systems</title>
+    <url>/2025/08/22/intern-review/</url>
+    <content><![CDATA[<p>Over the past three months, I’ve had the opportunity to work as a Cloud infra intern  at <a href="https://www.pingcap.com/">PingCAP</a> that spanned <strong>Kubernetes, cloud infrastructure, and system reliability</strong>. It’s been a rewarding journey where I not only learned new technologies but also gained valuable insights into engineering practices in production systems. In this post, I’ll share what I worked on, the challenges I faced, and what I took away from the experience.</p>
+<h2 id="Feature-Development"><a href="#Feature-Development" class="headerlink" title="Feature Development"></a>Feature Development</h2><p>One major part of my internship focused on feature development:</p>
+<ul>
+<li><strong>Cluster CR backup and query APIs</strong>: I implemented periodic backups of cluster Custom Resource (CR) information and built query APIs, which were then integrated into the internal operations system. This involved using <strong>Kubernetes, Gin, and GORM</strong>.</li>
+<li><strong>TiDB Cloud dataplane manager</strong>: I participated in the development of the Next-Gen control plane for TiDB Cloud, specifically contributing to the <strong>dataplane manager</strong>. My work centered on the <strong>storage class and S3 bucket management module</strong>, where I gained hands-on experience with <strong>Kubernetes controller development, Crossplane, and AWS services</strong>.</li>
+<li><strong>AWS load balancer subnet allocation design</strong>: I proposed a new subnet allocation scheme for AWS load balancers to support TiProxy’s routing needs. Although we eventually discovered the original assumption was invalid (so the work didn’t proceed to implementation), the process taught me the importance of validating requirements early.</li>
+</ul>
+<h2 id="Security-Enhancements"><a href="#Security-Enhancements" class="headerlink" title="Security Enhancements"></a>Security Enhancements</h2><p>Security was another recurring theme in my work:</p>
+<ul>
+<li>Defined <strong>cloud resource naming conventions</strong> and refined <strong>IAM policies</strong> based on them.</li>
+<li>Standardized <strong>tag formats</strong> across resources to support <strong>cost analysis</strong>.</li>
+<li>Added <strong>deletion protection</strong> for cloud resources via Crossplane CRs, preventing accidents caused by operator mistakes.</li>
+<li>Optimized <strong>VPC networking</strong> by cleaning up unnecessary route tables and security groups.</li>
+</ul>
+<p>Through these tasks, I came to appreciate how security is not just about firewalls or permissions, but also about <strong>clarity, consistency, and prevention of human errors</strong>.</p>
+<h2 id="System-Stability-Improvements"><a href="#System-Stability-Improvements" class="headerlink" title="System Stability Improvements"></a>System Stability Improvements</h2><p>Reliability was a third area of focus:</p>
+<ul>
+<li>Strengthened testing by improving <strong>unit tests</strong> for the dataplane manager and scheduling <strong>E2E tests</strong> for regular execution.</li>
+<li>Enhanced observability with <strong>Prometheus</strong> for metrics collection, <strong>Grafana</strong> for visualization, and <strong>alerting rules</strong> for proactive monitoring.</li>
+<li>Fixed a critical bug where <strong>security groups were leaked</strong> during dataplane deletions, <a href="https://chenguo505.github.io/2025/07/21/alb-controller-debug/">see details</a>.</li>
+</ul>
+<p>This work reminded me that stability comes not just from fixing bugs, but from building <strong>processes and visibility</strong> that prevent problems from happening silently.</p>
+<h2 id="Growth-and-Reflections"><a href="#Growth-and-Reflections" class="headerlink" title="Growth and Reflections"></a>Growth and Reflections</h2><p>Looking back, this internship helped me grow in three main ways:</p>
+<ol>
+<li><strong>Technical depth</strong> – I gained real-world experience with Kubernetes internals, controller development, and cloud-native tools like Crossplane and Prometheus.</li>
+<li><strong>System-level thinking</strong> – I learned to see beyond isolated tasks and understand how security, reliability, and cost all interact in cloud infrastructure.</li>
+<li><strong>Critical questioning</strong> – The AWS load balancer project reminded me that sometimes the most valuable outcome is realizing a problem doesn’t actually exist — and saving effort by not building unnecessary solutions.</li>
+</ol>
+<h2 id="Closing-Thoughts"><a href="#Closing-Thoughts" class="headerlink" title="Closing Thoughts"></a>Closing Thoughts</h2><p>These months taught me that working on cloud infrastructure is as much about <strong>designing for people</strong> (operators, developers, users) as it is about writing code. Good systems prevent mistakes, surface insights, and scale without drama.</p>
+<p>I’m grateful for the guidance I received and excited to carry these lessons forward into future projects.</p>
+]]></content>
+      <categories>
+        <category>Development</category>
+      </categories>
+      <tags>
+        <tag>Kubernetes</tag>
+        <tag>Golang</tag>
+      </tags>
+  </entry>
 </search>
